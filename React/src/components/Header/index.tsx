@@ -3,10 +3,10 @@ import Navigation from "components/Header/elements/Navigation";
 
 const Index = () => {
     return (
-        <header>
-            <Header/>
-            <Navigation/>
-        </header>
+        <>
+            <Header />
+            <Navigation />
+        </>
     );
 };
 

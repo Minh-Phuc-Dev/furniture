@@ -1,26 +1,26 @@
-import {TRIGGER_TOAST_TYPE, triggerToast} from "common/Sonner";
-import {AUTHENTICATE_STATUS, clearCredential} from "contexts/Authenticate";
-import {loadCart} from "contexts/Cart/Mindleware";
-import {loadOrder} from "contexts/Order/Mindleware";
-import {AppDispatch, AppState} from "contexts/root";
-import {useDispatch, useSelector} from "react-redux";
-import {Link, useLocation} from "react-router-dom";
+import { TRIGGER_TOAST_TYPE, triggerToast } from "common/Sonner";
+import { AUTHENTICATE_STATUS, clearCredential } from "contexts/Authenticate";
+import { loadCart } from "contexts/Cart/Mindleware";
+import { loadOrder } from "contexts/Order/Mindleware";
+import { AppDispatch, AppState } from "contexts/root";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useLocation } from "react-router-dom";
 import AuthenticateService from "services/AuthenticateService";
-import {twMerge} from "tailwind-merge";
+import { twMerge } from "tailwind-merge";
 
 const Navigation = () => {
-    const {status} = useSelector((state: AppState) => state.authenticate);
+    const { status } = useSelector((state: AppState) => state.authenticate);
     const dispatch = useDispatch<AppDispatch>()
-    const {pathname} = useLocation()
+    const { pathname } = useLocation()
 
 
-    const handleLogout =  async () => {
-        const {success} = await AuthenticateService.logout()
+    const handleLogout = async () => {
+        const { success } = await AuthenticateService.logout()
 
         if (success) {
             triggerToast(
                 {
-                    type:TRIGGER_TOAST_TYPE.SUCCESS,
+                    type: TRIGGER_TOAST_TYPE.SUCCESS,
                     header: "Success",
                     body: "Logout successfully"
                 }
@@ -33,7 +33,7 @@ const Navigation = () => {
 
         triggerToast(
             {
-                type:TRIGGER_TOAST_TYPE.ERROR,
+                type: TRIGGER_TOAST_TYPE.ERROR,
                 header: "Error",
                 body: "Logout failed"
             }
@@ -43,7 +43,7 @@ const Navigation = () => {
 
 
     return (
-        <nav className="bg-secondary">
+        <nav className="bg-secondary sticky top-0 z-10">
             <div
                 className="max-w-1200 mx-auto flex items-center"
             >
@@ -51,9 +51,9 @@ const Navigation = () => {
                     className="px-8 py-3 flex space-x-1 text-white font-medium bg-primary"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
-                         stroke="currentColor" className="size-6">
+                        stroke="currentColor" className="size-6">
                         <path strokeLinecap="round" strokeLinejoin="round"
-                              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+                            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                     </svg>
                     <span>
                         All category

@@ -1,5 +1,5 @@
-import {FC, Fragment, ReactNode} from 'react';
-import {Link} from "react-router-dom";
+import { FC, Fragment, ReactNode } from 'react';
+import { Link } from "react-router-dom";
 
 type Breadcrumb = {
     label: ReactNode,
@@ -7,7 +7,7 @@ type Breadcrumb = {
 }
 
 
-const Breadcrumb: FC<{ items?: { to: string, label: ReactNode }[] }> = ({items = []}) => {
+const Breadcrumb: FC<{ items?: { to: string, label: ReactNode }[] }> = ({ items = [] }) => {
     return (
         <div className="py-4 container flex gap-3 items-center">
             <Link to="/" className="text-primary">
@@ -23,7 +23,7 @@ const Breadcrumb: FC<{ items?: { to: string, label: ReactNode }[] }> = ({items =
             {
                 items.map(
                     (
-                        {to, label}, index) => (
+                        { to, label }, index) => (
                         <Fragment key={index}>
                             <span className="text-sm text-gray-400">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-5">
@@ -34,7 +34,7 @@ const Breadcrumb: FC<{ items?: { to: string, label: ReactNode }[] }> = ({items =
                                     />
                                 </svg>
                             </span>
-                            <Link to={to} className="text-gray-600 font-medium uppercase">{label}</Link>
+                            <Link to={to} className="text-gray-600 font-medium">{label}</Link>
                         </Fragment>
                     )
                 )

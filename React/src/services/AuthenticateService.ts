@@ -1,6 +1,6 @@
 import interceptor from "apis/Interceptor";
 import {requestApiHelper} from "helpers/Request";
-import {Authenticated} from "types/Authenticate";
+import {User} from "types/Authenticate";
 
 
 class AuthenticateService {
@@ -27,7 +27,7 @@ class AuthenticateService {
     }
 
     static getCredential() {
-        return requestApiHelper<Authenticated>(
+        return requestApiHelper<User>(
             interceptor.get(
                 "credential"
             )

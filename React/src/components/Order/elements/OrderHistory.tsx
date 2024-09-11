@@ -64,7 +64,6 @@ const OrderHistory = () => {
                                     <p className="text-gray-600 grow">{item.attributes.streetAddress}</p>
                                     <p className="text-gray-600 w-40">{new Date(item.createdAt).toLocaleTimeString()}</p>
                                     <div className="text-gray-600 w-20">
-
                                         {
                                             item.status === "PENDING" ? (
                                                 <Badge

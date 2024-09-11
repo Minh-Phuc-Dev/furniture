@@ -93,7 +93,7 @@ const Cart = () => {
 
                                     <div className="md:w-1/3 w-full">
                                         <h2 className="text-gray-800 mb-3 xl:text-xl textl-lg font-medium uppercase">
-                                            Italian L Shape Sofa
+                                            {item.product.name}
                                         </h2>
                                         <p className="text-primary font-semibold">${item.product.price}</p>
                                         <p className="text-gray-500">{new Date(item.updatedAt).toLocaleString()}</p>

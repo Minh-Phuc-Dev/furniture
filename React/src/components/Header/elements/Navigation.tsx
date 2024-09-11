@@ -1,5 +1,5 @@
 import { TRIGGER_TOAST_TYPE, triggerToast } from "common/Sonner";
-import { AUTHENTICATE_STATUS, clearCredential } from "contexts/Authenticate";
+import {AUTHENTICATE_STATUS, AuthenticateState, clearCredential} from "contexts/Authenticate";
 import { loadCart } from "contexts/Cart/Mindleware";
 import { loadOrder } from "contexts/Order/Mindleware";
 import { AppDispatch, AppState } from "contexts/root";
@@ -9,9 +9,10 @@ import AuthenticateService from "services/AuthenticateService";
 import { twMerge } from "tailwind-merge";
 
 const Navigation = () => {
-    const { status } = useSelector((state: AppState) => state.authenticate);
+    const { status } = useSelector((state: AppState) => state.authenticate) as AuthenticateState
     const dispatch = useDispatch<AppDispatch>()
     const { pathname } = useLocation()
+
 
 
     const handleLogout = async () => {

@@ -67,6 +67,13 @@ const Cart = () => {
         [cart.data]
     )
 
+    const total = cart.data.reduce(
+        (current, item) => {
+            return current + (item.quantity * item.product.price)
+        },
+        0
+    )
+
     return (
         <div className="flex gap-5">
             <div className="grow space-y-5">
@@ -143,7 +150,7 @@ const Cart = () => {
                 <div className="space-y-1 text-gray-600 pb-3 border-b border-gray-200">
                     <div className="flex justify-between font-medium">
                         <p>Subtotal</p>
-                        <p>$320</p>
+                        <p>${total}</p>
                     </div>
                     <div className="flex justify-between">
                         <p>Delivery</p>
@@ -156,7 +163,7 @@ const Cart = () => {
                 </div>
                 <div className="flex justify-between my-3 text-gray-800 font-semibold uppercase">
                     <h4>Total</h4>
-                    <h4>$320</h4>
+                    <h4>${total}</h4>
                 </div>
 
                 <Link

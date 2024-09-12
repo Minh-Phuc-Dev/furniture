@@ -17,7 +17,7 @@ class OrderService {
         )
     }
 
-    static async get<T = Order[]>() {
+    static async getOrders<T = Order[]>() {
         return await requestApiHelper<T, T>(
             interceptor.get("orders" )
         )

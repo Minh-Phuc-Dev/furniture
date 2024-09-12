@@ -1,5 +1,6 @@
 import interceptor from "apis/Interceptor";
 import {requestApiHelper} from "helpers/Request";
+import type {Order} from "types/Order";
 import {Product} from "types/Product";
 
 class StatisticsService {
@@ -25,6 +26,12 @@ class StatisticsService {
             interceptor.get(
                 "statistics/products"
             )
+        )
+    }
+
+    static async getOrders<T = Order[]>() {
+        return await requestApiHelper<T, T>(
+            interceptor.get("statistics/orders" )
         )
     }
 

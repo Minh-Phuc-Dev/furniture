@@ -11,7 +11,7 @@ import {
 } from "common/TanStackTable";
 import useCallAPIState, {CALL_API_STATUS} from "hooks/UseCallAPIState";
 import {useCallback, useEffect} from 'react';
-import OrderService from "services/OrderService";
+import StatisticsService from "services/StatisticsService";
 import {type Order} from "types/Order";
 import {Product} from "types/Product";
 
@@ -106,7 +106,7 @@ const OrderManage = () => {
 
     const loadOrder = useCallback(async () => {
         setOrder(CALL_API_STATUS.LOADING)
-        const {success, payload} = await OrderService.get<Order<Product>[]>()
+        const {success, payload} = await StatisticsService.getOrders<Order<Product>[]>()
         if (!success) {
             setOrder(CALL_API_STATUS.ERROR, payload)
             return

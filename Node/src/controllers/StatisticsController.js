@@ -24,6 +24,14 @@ class StatisticsController {
     static async getTopSellingProducts(request, response) {
         (await StatisticService.topSellingProducts()).send(response)
     }
+
+    /*
+     * @param {import("express").Request} request
+     * @param {import("express").Response} response
+     */
+    static async orders(request, response) {
+        (await StatisticService.orders()).send(response)
+    }
 }
 
 module.exports = {

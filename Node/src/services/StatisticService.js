@@ -176,6 +176,32 @@ class StatisticService {
             "Top selling products successfully fetched."
         )
     }
+
+    static async orders() {
+        const orders = await Order.findAll(
+            {
+                include: [
+                    {
+                        model: OrderItem,
+                        as: "items",
+                        include: {
+                            model: Product,
+                            as: "product",
+                            attributes: ["id", "name", "price", "attributes"]
+                        }
+                    }
+                ]
+            }
+        )
+
+        return JsonResult.builder(
+            HTTP_CODE.OK,
+            HTTP_CODE.OK,
+            orders,
+            "Order statistic successfully fetched."
+        )
+    }
+
 }
 
 module.exports = {

@@ -48,7 +48,7 @@ const ProductModal: FC<RowModel<Product>> = ({row, table, index}) => {
             <Modal.Content className="overflow-hidden">
                 <div className="flex flex-col w-full h-full max-w-screen-lg rounded bg-white">
                     <div className="px-5 py-2 border-b flex space-x-5 justify-between">
-                        <h2 className="font-medium">Create product</h2>
+                        <h2 className="font-medium">Edit product</h2>
                         <Modal.Trigger
                             mode="close"
                             className="text-gray-400 hover:text-red-500"
@@ -71,7 +71,11 @@ const ProductModal: FC<RowModel<Product>> = ({row, table, index}) => {
                                     Joi.object(
                                         {
                                             name: Joi.string().required(),
-                                            price: Joi.number().min(0).required(),
+                                            price: Joi.number().min(0).less(Joi.ref("oldPrice")).required().messages(
+                                                {
+                                                    'number.less': 'Discount price must be less than the price'
+                                                }
+                                            ),
                                             oldPrice: Joi.number().min(0),
                                             quantity: Joi.number().integer().min(0).required(),
                                             status: Joi.string().required(),
@@ -89,7 +93,8 @@ const ProductModal: FC<RowModel<Product>> = ({row, table, index}) => {
                                     ).messages(
                                         {
                                             "string.empty": "Property is required",
-                                            "array.min": "Property is required"
+                                            "array.min": "Property is required",
+                                            "number.base": "Invalid value"
                                         }
                                     ),
                                     {
@@ -128,7 +133,7 @@ const ProductModal: FC<RowModel<Product>> = ({row, table, index}) => {
                     >
                         <div>
                             <h2 className="font-medium">Image</h2>
-                            <p className="text-sm opacity-50">Add your product pricing here</p>
+                            <p className="text-sm opacity-50">Add your product images here</p>
                         </div>
                         <div className="space-y-1">
                             <FileInput multiple={true} controller={{name: "attributes.image"}}/>
@@ -142,14 +147,14 @@ const ProductModal: FC<RowModel<Product>> = ({row, table, index}) => {
                         <div className="space-y-2">
                             <label>Price</label>
                             <div className="space-y-1">
-                                <TextInput placeholder="Enter price ..." controller={{name: "oldPrice"}}/>
+                                <TextInput placeholder="Enter original price ..." controller={{name: "oldPrice"}}/>
                                 <ErrorMessage name="oldPrice"/>
                             </div>
                         </div>
                         <div className="space-y-2">
                             <label>Discount price</label>
                             <div className="space-y-1">
-                                <TextInput placeholder="Category name ..." controller={{name: "price"}}/>
+                                <TextInput placeholder="Enter discounted price ..." controller={{name: "price"}}/>
                                 <ErrorMessage name="price"/>
                             </div>
                         </div>

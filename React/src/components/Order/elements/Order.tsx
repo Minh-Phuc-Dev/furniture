@@ -66,7 +66,6 @@ const Order = () => {
                     firstName: "",
                     lastName: "",
                     streetAddress: "",
-                    zipCode: "",
                     phoneNumber: "",
                     emailAddress: "",
                     paymentMethod: "VNPAY",
@@ -81,9 +80,6 @@ const Order = () => {
                         }),
                         streetAddress: Joi.string().required().messages({
                             'string.empty': 'Street Address is required'
-                        }),
-                        zipCode: Joi.string().required().messages({
-                            'string.empty': 'Zip Code is required'
                         }),
                         phoneNumber: Joi.string().required().messages({
                             'string.empty': 'Phone Number is required'
@@ -165,13 +161,6 @@ const Order = () => {
                         </div>
                         <div>
                             <label className="text-gray-600 mb-2 block">
-                                Zip code
-                            </label>
-                            <TextInput controller={{name: "zipCode"}} type="text" className="input-box"/>
-                        </div>
-
-                        <div>
-                            <label className="text-gray-600 mb-2 block">
                                 Payment Method
                             </label>
                             <DropdownInput
@@ -184,6 +173,10 @@ const Order = () => {
                                         {
                                             name: "Purchase and Pay on Delivery (COD)",
                                             value: "COD"
+                                        },
+                                        {
+                                            name: "Pay at delivery (Bank Transfer)",
+                                            value: "PAY_AT_DELIVERY"
                                         }
                                     ]
                                 }

@@ -85,8 +85,12 @@ const CreateProduct: FC<CreateProductProps> = ({table}) => {
                                     Joi.object(
                                         {
                                             name: Joi.string().required(),
-                                            price: Joi.number().min(0).required(),
-                                            oldPrice: Joi.number().min(0),
+                                            price: Joi.number().min(0).less(Joi.ref("oldPrice")).required().messages(
+                                                {
+                                                    'number.less': 'Discount price must be less than the price'
+                                                }
+                                            ),
+                                            oldPrice: Joi.number().min(0).required(),
                                             quantity: Joi.number().integer().min(0).required(),
                                             status: Joi.string().required(),
                                             sku: Joi.string().max(50),
@@ -103,7 +107,8 @@ const CreateProduct: FC<CreateProductProps> = ({table}) => {
                                     ).messages(
                                         {
                                             "string.empty": "Property is required",
-                                            "array.min": "Property is required"
+                                            "array.min": "Property is required",
+                                            "any.invalid": "Invalid value"
                                         }
                                     )
                                 )
@@ -138,7 +143,7 @@ const CreateProduct: FC<CreateProductProps> = ({table}) => {
                     >
                         <div>
                             <h2 className="font-medium">Image</h2>
-                            <p className="text-sm opacity-50">Add your product pricing here</p>
+                            <p className="text-sm opacity-50">Add your product images here</p>
                         </div>
                         <div className="space-y-1">
                             <FileInput multiple={true} controller={{name: "attributes.image"}}/>
@@ -152,14 +157,14 @@ const CreateProduct: FC<CreateProductProps> = ({table}) => {
                         <div className="space-y-2">
                             <label>Price</label>
                             <div className="space-y-1">
-                                <TextInput placeholder="Enter price ..." controller={{name: "oldPrice"}}/>
+                                <TextInput placeholder="Enter original price ..." controller={{name: "oldPrice"}}/>
                                 <ErrorMessage name="oldPrice"/>
                             </div>
                         </div>
                         <div className="space-y-2">
                             <label>Discount price</label>
                             <div className="space-y-1">
-                                <TextInput placeholder="Category name ..." controller={{name: "price"}}/>
+                                <TextInput placeholder="Enter discounted price ..." controller={{name: "price"}}/>
                                 <ErrorMessage name="price"/>
                             </div>
                         </div>

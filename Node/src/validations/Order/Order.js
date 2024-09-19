@@ -7,7 +7,6 @@ const Joi = require("joi");
  * @property {string} attributes.firstName - The first name of the user.
  * @property {string} attributes.lastName - The last name of the user.
  * @property {string} attributes.streetAddress - The street address of the user.
- * @property {string} attributes.zipCode - The zip code of the user.
  * @property {string} attributes.phoneNumber - The phone number of the user.
  * @property {string} attributes.emailAddress - The email address of the user.
  * @property {string[]} products - List of product IDs.
@@ -33,11 +32,6 @@ const OrderSchema = Joi.object(
             streetAddress: Joi.string().required().messages(
                 {
                     'string.empty': 'Street Address is required'
-                }
-            ),
-            zipCode: Joi.string().required().messages(
-                {
-                    'string.empty': 'Zip Code is required'
                 }
             ),
             phoneNumber: Joi.string().required().messages(
